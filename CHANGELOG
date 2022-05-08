@@ -1,0 +1,40 @@
+CHANGELOG for the CCEAP tool
+
+v. 0.6.2 : 2021-04-26
+ * Improved welcome message and add -q for the client, too.
+
+v. 0.6.1 : 2019-04-21 (Easter)
+ * new parameter -T for provision of a default IAT value used for *all* packets
+ * better error handling and error reporting
+ * add random sequence number tool *rand_seq* for use with -s
+ * do not send more packets than allowed by -c when packets are duplicated; thanks to J. Kammerlander for reporting this issue
+ * increased maximum number of packets that can be sent
+ * make the tool compile under Debian (use -lrt)
+ * added `runserloop` target in Makefile to run the server in a loop
+
+v. 0.6.0 : 2018-06-12
+ * slightly improved client (help) output (thanks to student feedback)
+ * fixed an error message in the client
+ * increased number of packets that can be sent from 255 to 2048
+ * add iat_encode tool to help encode messages as IAT values
+ * allow the combination of -c with -s; loop sequence numbers if necessary and output all sequence numbers when -v is used
+ * thanks to J. Kammerlander for reporting most of the issues for this release
+
+v. 0.5.2 : 2017-03-30
+ * added code to compile CCEAP under MacOS (not officially supported, just experimental)
+ * performed additional small improvements within the documentation
+ * fix header dependency in Makefile for C object files
+
+v. 0.5.1 : 2017-02-03
+ * performed additional improvements within documentation and Makefile
+ * added three pages of sample exercises including solutions
+ * added quite parameter -q for the server
+
+v. 0.5.0 : 2016-10-18
+ * added support for the Inter-arrival Time Pattern (and with that also an (indirect) support for the Rate/Throughput Pattern)
+ * aligned port used in Makefile with port used in docs
+ * improved formating issues for PDF documentation and introduced several detail updates within the documentation
+
+v. 0.4.1 : 2016-07-26
+ * Initial public release
+
