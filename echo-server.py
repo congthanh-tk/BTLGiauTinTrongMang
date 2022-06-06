@@ -1,7 +1,7 @@
 import socket
 
-HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
-PORT = 9999  # Port to listen on (non-privileged ports are > 1023)
+HOST = "0.0.0.0"  # Standard loopback interface address (localhost)
+PORT = 5555  # Port to listen on (non-privileged ports are > 1023)
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
@@ -13,12 +13,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         binary_string = ""
         i = 0
         while True:
-            data = conn.recv(1024)
-            print("Received Package ", i)
+            data = conn.recv(100)
+            print("Received Package ", len(data))
             i += 1
-            if len(data) == 50:
+            if len(data.rstrip()) == 50:
                 binary_string += '0'
-            elif len(data) == 60:
+            elif len(data.rstrip()) == 60:
                 binary_string += '1'
             if not data:
                 print("Binary string received: ", binary_string)

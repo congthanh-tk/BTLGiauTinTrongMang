@@ -36,7 +36,6 @@
 #include <arpa/inet.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <unistd.h>
 #include <sys/ioctl.h>
 #include <pthread.h>
 #include <errno.h>
@@ -47,6 +46,7 @@
 #include <inttypes.h>
 #include <math.h>
 #include <time.h>
+#include <pthread.h>
 
 #define CCEAP_VER	"0.6.2"
 #define CCEAP_AUTHOR	"Steffen Wendzel, https://www.wendzel.de"
@@ -56,12 +56,21 @@
 #define USAGE_CLIENT	1
 #define USAGE_SERVER	2
 
+#define TRUE   1 
+#define FALSE  0
+
 typedef struct {
 	u_int8_t opt_identifier;		/* freely selectable ID of option */
 	u_int8_t opt_type;			/* type of the optional header */
 	u_int8_t opt_value;			/* value of the optional header */
 	u_int8_t dummy;				/* dummy value to end up with 32 bytes */
 } options_t;
+
+typedef struct {
+	int socket;
+	char *address;
+} socketInfor;
+
 #define MAX_NUM_OPTIONS 32
 #define DEFAULT_IAT_VAL	1000000			/* 1sec */
 

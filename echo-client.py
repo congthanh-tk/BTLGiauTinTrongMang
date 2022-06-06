@@ -1,22 +1,23 @@
 import socket
+from time import sleep
 
-HOST = "127.0.0.1"  # The server's hostname or IP address
-PORT = 9999  # The port used by the server
+str_0 = b"ZehnByteeeZehnByteeeZehnByteeeZehnByteeeZehnByteee"+b" "*50
+str_1 = b"ZehnByteeeZehnByteeeZehnByteeeZehnByteeeZehnByteeeZehnByteee"+b" "*40
 
-str_0 = b"ZehnByteeeZehnByteeeZehnByteeeZehnByteeeZehnByteee"
-str_1 = b"ZehnByteeeZehnByteeeZehnByteeeZehnByteeeZehnByteeeZehn"
- 
+msg = input("Nhập thông điệp cần gửi: ")
+HOST = input("Nhập địa chỉ đích: ")
+PORT = int(input("Nhập cổng đích: "))
+bin_msg = ''.join('{:08b}'.format(b) for b in msg.encode('utf8'))
+
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
-    # 01010100
-    s.send(str_0)
-    s.send(str_1)
-    s.send(str_0)
-    s.send(str_1)
-    s.send(str_0)
-    s.send(str_1)
-    s.send(str_0)
-    s.send(str_0)
-    data = s.recv(1024)
+    for i in bin_msg:
+        print("Send package: ", i)
+        if i == "0":
+            s.send(str_0)
+        elif i == "1":
+            s.send(str_1)
+        sleep(0.5)
 
-print(f"Received {data!r}")
+    print("Sent message success!")
+    # s.close()

@@ -41,8 +41,8 @@ SERVERBUILDFLAGS=-lm
 
 all : $(OBJECTS)
 	$(CC) $(BUILDFLAGS) -o client client.o support.o -lm
-	$(CC) $(BUILDFLAGS) $(SERVERBUILDFLAGS) -o server server.o support.o -lm
-	$(CC) $(BUILDFLAGS) $(SERVERBUILDFLAGS) -o own_server own_server.c support.o -lm
+	$(CC) $(BUILDFLAGS) $(SERVERBUILDFLAGS) -pthread -o server server.o support.o -lm
+	$(CC) $(BUILDFLAGS) $(SERVERBUILDFLAGS) -pthread -o own_server own_server.c support.o -lm
 	$(CC) $(BUILDFLAGS) -o iat_encode iat_encode.o
 	$(CC) $(BUILDFLAGS) -o seq_encode seq_encode.o
 	$(CC) $(BUILDFLAGS) -o rand_seq rand_seq.o
